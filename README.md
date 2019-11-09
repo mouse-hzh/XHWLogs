@@ -1,0 +1,2 @@
+# XHWLogs
+database type logs
