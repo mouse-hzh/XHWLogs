@@ -40,23 +40,23 @@ class XHWLogs
         $configArr = $this->config->get('xhwLogs');
 
         if ($configArr['enable']) {
-            $actionName    = $request->route()->getActionName();
-            $controllerAndFunctionArray    = explode('@', substr($actionName, strrpos($actionName, "\\") + 1));
-            $controllerName   = $controllerAndFunctionArray[0];
-            $functionName      = $controllerAndFunctionArray[1];
-            $operationDescription = OperationDescription::query()->where('controller', $controllerName)->where('function', $functionName)->first();
+            $actionName                 = $request->route()->getActionName();
+            $controllerAndFunctionArray = explode('@', substr($actionName, strrpos($actionName, "\\") + 1));
+            $controllerName             = $controllerAndFunctionArray[0] ?? '';
+            $functionName               = $controllerAndFunctionArray[1] ?? '';
+            $operationDescription       = OperationDescription::query()->where('controller', $controllerName)->where('function', $functionName)->first();
 
-            $requestParameters   = json_encode($request->all(), JSON_UNESCAPED_UNICODE);
+            $requestParameters          = json_encode($request->all(), JSON_UNESCAPED_UNICODE);
             $requestExtensionParameters = json_encode($request->route()->parameters(), JSON_UNESCAPED_UNICODE);
 
             $operationLog = OperationLog::create([
                 'operation_description_id' => $operationDescription ? $operationDescription->id : 0,
-                'operate_user_id' => $userId,
-                'controller'   => $functionName,
-                'function'     => $functionName,
-                'request_params' => $requestParameters,
+                'operate_user_id'          => $userId,
+                'controller'               => $functionName,
+                'function'                 => $functionName,
+                'request_params'           => $requestParameters,
                 'request_extension_params' => $requestExtensionParameters,
-                'response_data' => '',
+                'response_data'            => '',
             ]);
 
             return $operationLog;
