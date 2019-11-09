@@ -1,0 +1,15 @@
+{
+    "name": "mouse/database-type-logs-for-laravel",
+    "authors": [
+        {
+            "name": "mouse",
+            "email": "huangzhihao@heywoods.cn"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Mouse\\XHWLogs\\": "src/"
+        }
+    },
+    "require": {}
+}
