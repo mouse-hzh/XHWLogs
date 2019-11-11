@@ -10,7 +10,8 @@ class OperationLog extends Model
 
     protected $fillable = [
         'operation_description_id',
-         'operate_user_id',
+        'operate_user_id',
+        'request_uri',
         'controller',
         'function',
         'request_params',

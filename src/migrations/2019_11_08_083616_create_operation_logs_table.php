@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateOperationLogsTable extends Migration
 {
@@ -17,6 +17,7 @@ class CreateOperationLogsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('operation_description_id')->default('0')->comment('operation_descriptions primary key');
             $table->bigInteger('operate_user_id')->comment('operate user id');
+            $table->string('request_uri', 128)->comment('request uri name');
             $table->string('controller', 128)->comment('controller name');
             $table->string('function', 128)->comment('function name');
             $table->text('request_params')->comment('request parameters');

@@ -39,8 +39,9 @@ class XHWLogs
 
         $configArr     = $this->config->get('xhwLogs');
         $requestMethod = $request->getMethod();
+        $requestUri    = $request->getRequestUri(); // if the uri is homepage, return
 
-        if (!$configArr['enable'] || ($requestMethod == 'GET' && $configArr['record_get_method'])) {
+        if (!$configArr['enable'] || ($requestMethod == 'GET' && $configArr['record_get_method']) || $requestUri == '/') {
             return null;
         }
 
@@ -63,7 +64,8 @@ class XHWLogs
         $operationLog = OperationLog::create([
             'operation_description_id' => $operationDescription ? $operationDescription->id : 0,
             'operate_user_id'          => $userId,
-            'controller'               => $functionName,
+            'request_uri'              => $requestUri,
+            'controller'               => $controllerName,
             'function'                 => $functionName,
             'request_params'           => $requestParameters,
             'request_extension_params' => $requestExtensionParameters,
