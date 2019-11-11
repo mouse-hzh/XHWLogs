@@ -4,6 +4,7 @@ namespace Mouse\XHWLogs;
 use Illuminate\Config\Repository;
 use Mouse\XHWLogs\Models\OperationDescription;
 use Mouse\XHWLogs\Models\OperationLog;
+use Mouse\XHWLogs\Models\WhiteList;
 use Route;
 
 class XHWLogs
